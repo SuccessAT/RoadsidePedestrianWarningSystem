@@ -1,0 +1,40 @@
+# ---- MATLAB ----
+*.asv          # autosave files
+*.m~           # backup files from some editors
+*.mex*         # compiled MEX binaries (platform-specific)
+*.mlappinstall
+*.mltbx
+slprj/
+sccprj/
+codegen/
+*.autosave
+
+# MATLAB Simulink (not currently used, but harmless to exclude)
+*.slxc
+*.slx.autosave
+
+# MATLAB Project/session files (machine-specific, not source)
+*.prj
+resources/project/
+
+# ---- Generated / simulation output ----
+data/*.mat
+data/*.csv
+*.mat
+!config/*.mat        # uncomment/adjust if you ever store reference configs as .mat
+*.avi
+*.mp4
+*.gif
+
+# ---- OS junk ----
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ---- Editor/IDE ----
+.vscode/
+*.swp
+*~
+
+# ---- Logs ----
+*.log
