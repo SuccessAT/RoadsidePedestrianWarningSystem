@@ -1,11 +1,14 @@
 function egoVehicle = createEgoSensorMount(scenario, cfg)
 %CREATEEGOSENSORMOUNT Stationary vehicle actor representing the LiDAR pole.
-% lidarPointCloudGenerator requires a real ego actor -- targetPoses() and
-% roadMesh() are only defined relative to an actual vehicle/actor object.
+% Pitch is set here (on the actor itself) rather than on the sensor --
+% lidarPointCloudGenerator has no confirmed mounting-angle property in
+% this toolbox version, but Pitch/Yaw/Roll on actor()/vehicle() are
+% standard, well-documented pose properties.
 p = cfg.lidar.position;
 egoVehicle = vehicle(scenario, 'ClassID', 1, ...
     'Position', [p(1) p(2) 0], ...
     'Yaw', cfg.lidar.heading, ...
+    'Pitch', cfg.lidar.pitch, ...
     'Length', 0.3, 'Width', 0.3, 'Height', 0.1, ...
     'Name', 'LidarMount');
 end

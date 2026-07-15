@@ -1,5 +1,7 @@
-function update3DScene(h, pedPos, ptCloudWorld, warningOn)
-set(h.ped, 'XData', pedPos(1), 'YData', pedPos(2), 'ZData', 0.9);
+function update3DScene(h, ptCloudWorld, warningOn)
+%UPDATE3DSCENE Per-frame update of the overlay elements only.
+% Pedestrian/vehicle meshes update themselves via the native scenario
+% plot as their Position/Yaw change -- no manual redraw needed here.
 
 if ptCloudWorld.Count > 0
     xyz = ptCloudWorld.Location;

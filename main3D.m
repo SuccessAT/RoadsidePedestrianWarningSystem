@@ -6,13 +6,13 @@ addpath('scenario', 'visualization', 'controller', 'lidar', 'processing');
 cfg = config();
 
 scenario   = createRoad(cfg);
-bld        = createBuilding(cfg);
 egoVehicle = createEgoSensorMount(scenario, cfg);
 createBuildingActor(scenario, cfg);
+createVehicle(scenario, cfg);
 ped        = createPedestrian(scenario, cfg);
 
 lidarSensor = createLidarSensor(cfg, scenario, egoVehicle);
-h = draw3DScene(cfg, bld);
+h = draw3DScene(scenario, cfg);
 
 state = [];
 
@@ -28,7 +28,7 @@ while advance(scenario)
     occupied = detectPedestrian(ptCloudWorld, cfg);
     [warningOn, state] = warningController(state, occupied, cfg.simulation.sampleTime, cfg);
 
-    update3DScene(h, pos, ptCloudWorld, warningOn);
+    update3DScene(h, ptCloudWorld, warningOn);
     title(h.ax, sprintf('t = %.2f s | Warning: %s | Points: %d', ...
         t, ternaryStr(warningOn), ptCloudWorld.Count));
 
