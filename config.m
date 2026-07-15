@@ -4,7 +4,7 @@ function cfg = config()
 
 %% Simulation
 cfg.simulation.sampleTime = 0.03;   % s (~33 updates/sec for smoother animation)
-cfg.simulation.stopTime   = 150;     % s
+cfg.simulation.stopTime   = 20;     % s
 
 %% Road (L-shaped, defined by drivingScenario road centerline)
 cfg.road.width   = 7;
@@ -29,7 +29,11 @@ cfg.building.height   = 8;
 cfg.lidar.position = [34 4 4];   % [x y z], pole-mounted
 cfg.lidar.range    = 35;
 cfg.lidar.fov      = 140;        % degrees
-cfg.lidar.heading  = 30;         % degrees, bisects the detection zone corners
+cfg.lidar.heading  = 30;         % degrees, bisects the detection zone
+
+cfg.lidar.azimuthResolution   = 0.5;     % degrees
+cfg.lidar.elevationLimits     = [-15 15];% degrees
+cfg.lidar.elevationResolution = 1.25;    % degrees corners
 
 %% Warning sign
 cfg.sign.position = [35 2 3];
@@ -38,7 +42,7 @@ cfg.sign.position = [35 2 3];
 % Placed on the VISIBLE side of the building (x > 38), so "inside zone"
 % cleanly means "pedestrian has rounded the blind corner and is now
 % approaching the crossing" -- not "pedestrian is inside a wall".
-cfg.detectionZone.x = [38 42];
+cfg.detectionZone.x = [38 48];
 cfg.detectionZone.y = [2  28];
 cfg.detectionZone.z = [0  3];
 
@@ -54,10 +58,12 @@ cfg.detectionZone.clearDelay   = 1.0;   % s absent before warning OFF
 %   (44,20)             : still inside FOV, sweeping through (~58 deg, 19m)
 %   (48,40)             : exits FOV via range limit (~39m > 35m range)
 cfg.pedestrian.waypoints = [
-    15   2   0
-    42   2   0
-    42  30   0
+    15   6   0
+    30   6   0
+    40   6   0
+    44  20   0
+    48  40   0
 ];
-cfg.pedestrian.speed = 0.5;   % m/s, average walking speed
+cfg.pedestrian.speed = 1.4;   % m/s, average walking speed
 
 end
